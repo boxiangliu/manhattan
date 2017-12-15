@@ -3,7 +3,7 @@ title: "Manhattan: ggplot2-based Manhattan plots"
 author: "Boxiang Liu"
 date: "`r Sys.Date()`"
 output: 
-    rmarkdown::html_vignette:
+    pdf_document:
         toc: true
         toc_depth: 3
 vignette: >
@@ -12,6 +12,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r,echo=FALSE}
+knitr::opts_chunk$set(message=FALSE,cache=TRUE, fig.width=6, fig.height=6,fig.align='center')
+```
+
+
+## Introduction
 The Manhattan plot is a specialized form of scatterplot to display genome-wide association studies (GWAS). The x-axis of a Manhattan plot is the genomic position, and the y-axis is usually the $-log_{10}(P\text{-}value)$ (although other sensible metric can be used as well). 
 
 There are many packages for making Manhattan plots, but most of them are not easily extensible. The package `ggplot2` has become increasingly popular among the $\textbf{R}$ and bioinformatics communities. Therefore, a package that is fully compatible with `ggplot2` and customizable with its `geom`s will facilitate the use of Manhattan plots.  
@@ -35,10 +41,6 @@ The package has been tested on Linux and Mac OSX. It has not been tested on Wind
 ## Usage
 ### Basic Manhattan plot
 To illustate its usage, let us plot the coronary artery disease GWAS based on *Deloukas et al*(2013). The original dataset provides nominal p-values. Since we want to plot the $-log_{10}(P\text{-}value)$, let us take the logarithm.  
-
-```{r,echo=FALSE}
-knitr::opts_chunk$set(message=FALSE,cache=TRUE, fig.width=6, fig.height=6,fig.align='center')
-```
 
 
 ```{r,cache=TRUE}
