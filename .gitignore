@@ -1,0 +1,5 @@
+.Rproj.user
+.Rhistory
+.RData
+vignettes/manhattan_cache
+inst/doc
