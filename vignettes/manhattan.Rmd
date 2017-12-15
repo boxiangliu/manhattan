@@ -37,7 +37,7 @@ The package has been tested on Linux and Mac OSX. It has not been tested on Wind
 To illustate its usage, let us plot the coronary artery disease GWAS based on *Deloukas et al*(2013). The original dataset provides nominal p-values. Since we want to plot the $-log_{10}(P\text{-}value)$, let us take the logarithm.  
 
 ```{r,echo=FALSE}
-knitr::opts_chunk$set(cache=TRUE, fig.width=6, fig.height=6,fig.align='center')
+knitr::opts_chunk$set(message=FALSE,cache=TRUE, fig.width=6, fig.height=6,fig.align='center')
 ```
 
 
@@ -119,5 +119,5 @@ cad_gwas$size=ifelse(cad_gwas$rsid%in%c('rs602633','rs1333045'),5,2)
 manhattan(cad_gwas,build='hg18')+geom_point(aes(color=color,size=size),show.legend=FALSE)
 ```
 
-## Questions and Bug
+## Questions and Bugs
 If you have any question or want to report a bug, please open a github issue [here](https://github.com/boxiangliu/manhattan/issues). 
