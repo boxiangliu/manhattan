@@ -1,5 +1,5 @@
 ---
-title: "manhattan: ggplot2-based Manhattan plots"
+title: "Manhattan: ggplot2-based Manhattan plots"
 author: "Boxiang Liu"
 date: "`r Sys.Date()`"
 output: 
@@ -22,14 +22,15 @@ Introducing `manhattan`, a `ggplot2` based package for making Manhattan plots. I
 To install `manhattan`, use the standard R package installation command. 
 
 ```{r}
-install.packages('manhattan')
+# install.packages('manhattan')
 ```
 
 If you want the latest development version, install it using `devtools`. 
 ```{r}
-devtools::install_git('boxiangliu/manhattan')
+devtools::install_github("boxiangliu/manhattan")
 ```
 
+The package has been tested on Linux and Mac OSX. It has not been tested on Windows.
 
 ## Usage
 ### Basic Manhattan plot

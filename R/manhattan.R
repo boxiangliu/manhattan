@@ -1,6 +1,4 @@
-library(dplyr)
-
-get_chrom_lengths=function(build=c('hg18','hg19','hg38')){
+ get_chrom_lengths=function(build=c('hg18','hg19','hg38')){
     build=match.arg(build)
     
     chrom_lengths_hg18=c(chr1=247249719,chr2=242951149,chr3=199501827,
@@ -59,6 +57,7 @@ get_x_breaks=function(chrom_lengths){
     return(x_breaks)
 }
 
+
 add_cumulative_pos=function(data,build=c('hg18','hg19','hg38')){
     build=match.arg(build)
     
@@ -91,23 +90,19 @@ add_color=function(data,color1='black',color2='grey'){
     return(data)
 }
 
-
-# build='hg18'
-# cad_gwas_fn='~/Documents/tools/manhattan/data/cad_gwas.txt'
-# cad_gwas=fread(cad_gwas_fn,header=TRUE)
-# devtools::use_data(cad_gwas)
-# class(cad_gwas)
-# saveRDS(cad_gwas,'data/cad_gwas.rda')
-# 
-# gwas$y=-log10(gwas$pval)
-# 
-# 
-# data[min(pval)==pval]
-# data[,label:=ifelse(rsid=='rs1333045','rs1333045','')]
-# data[,color:=ifelse(rsid=='rs1333045','red',NA)]
-# 
-
-
+#' Make a Manhattan plot
+#' @param gwas A GWAS study. Must have chrom, pos, and y columns
+#' @param build Genomic build. Currently supports hg18, hg19, and hg38
+#' @param color1 Color for odd-numbered chromosomes
+#' @param color2 Color for even-numbered chromosomes
+#' @example
+#' data(cad_gwas)
+#' cad_gwas$y=-log10(cad_gwas$pval)
+#' manhattan(cad_gwas,build='hg18')
+#' @return a ggplot object that makes a Manhattan plot
+#' @details
+#' \code{manhattan} is a wrapper around \code{ggplot}. It uses a few tricks to transform a genomic axis to a scatterplot axis. For instance, chr2:1 would be the length of chromosome 1 plus 1, chr3:1 would be chromosome 1 plus chromosome 2 plus 1, so on and so forth. It is important to specify the genomic build (e.g. hg19) so that `manhattan` can make the correct transformation. It positions the chromosome labels on the x-axis according to these transformations.
+#' @export
 manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='grey'){
     data=gwas
     build=match.arg(build)
