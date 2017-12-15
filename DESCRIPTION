@@ -7,7 +7,7 @@ Author: Boxiang Liu
 Maintainer: Boxiang Liu <jollier.liu@gmail.com>
 Description: The Manhattan plot is a specialized form of scatterplot to display genome-wide association studies (GWAS). There are many packages for making Manhattan plots, but most of them are not easily extensible. This package, manhattan, is built on top of ggplot2. Its main plotting function returns an object fully compatible with ggplot2, and the object is customizable with geoms.
 License: GPL-3
-URL: https://github.com/boxiangliu/manhattan
+URL: https://raw.githubusercontent.com/boxiangliu/manhattan/master/vignettes/manhattan.pdf
 BugReports: https://github.com/boxiangliu/manhattan/issues
 Suggests: knitr,
     rmarkdown
