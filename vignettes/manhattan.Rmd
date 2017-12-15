@@ -16,11 +16,22 @@ The Manhattan plot is a specialized form of scatterplot to display genome-wide a
 
 There are many packages for making Manhattan plots, but most of them are not easily extensible. The package `ggplot2` has become increasingly popular among the $\textbf{R}$ and bioinformatics communities. Therefore, a package that is fully compatible with `ggplot2` and customizable with its `geom`s will facilitate the use of Manhattan plots.  
 
-Introducing `manhattan`, a `ggplot2` based package for making Manhattan plots. It takes in a `data.frame` and returns a standard `ggplot` object, upon which the user can add other `geom`.
+Introducing `manhattan`, a `ggplot2` based package for making Manhattan plots. It takes in a `data.frame` and returns a standard `ggplot` object, upon which the user can add other `geom`s. This makes it very convenient for users to build on `manhattan` and customize their plots.  
+
+## Installation
+To install `manhattan`, use the standard R package installation command. 
+
+```{r}
+install.packages('manhattan')
+```
+
+If you want the latest development version, install it using `devtools`. 
+```{r}
+devtools::install_git('boxiangliu/manhattan')
+```
+
 
 ## Usage
-
-
 ### Basic Manhattan plot
 To illustate its usage, let us plot the coronary artery disease GWAS based on *Deloukas et al*(2013). The original dataset provides nominal p-values. Since we want to plot the $-log_{10}(P\text{-}value)$, let us take the logarithm.  
 
@@ -108,4 +119,4 @@ manhattan(cad_gwas,build='hg18')+geom_point(aes(color=color,size=size),show.lege
 ```
 
 ## Questions and Bug
-If you have any question or want to report a bug, please open a github issue at 
+If you have any question or want to report a bug, please open a github issue [here](https://github.com/boxiangliu/manhattan/issues). 
