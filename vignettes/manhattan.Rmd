@@ -3,7 +3,7 @@ title: "Manhattan: ggplot2-based Manhattan plots"
 author: "Boxiang Liu"
 date: "`r Sys.Date()`"
 output: 
-    pdf_document:
+    rmarkdown::html_vignette:
         toc: true
         toc_depth: 3
 vignette: >
