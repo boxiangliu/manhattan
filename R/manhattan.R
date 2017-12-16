@@ -73,8 +73,11 @@ add_cumulative_pos=function(data,build=c('hg18','hg19','hg38')){
         stopifnot(chrom%in%names(cumulative_length))
         pos+cumulative_length[chrom]
     }
+    
+    for (i in paste0('chr',seq(1,22))){
+        data[data$chrom==i,'cumulative_pos']=data[data$chrom==i,'pos']+cumulative_length[i]
+    }
 
-    data=data%>%dplyr::group_by(chrom)%>%dplyr::mutate(cumulative_pos=calc_cumulative_pos(chrom,pos,cumulative_length))
     return(data)
 }
 
@@ -104,6 +107,7 @@ add_color=function(data,color1='black',color2='grey'){
 #' \code{manhattan} is a wrapper around \code{ggplot}. It uses a few tricks to transform a genomic axis to a scatterplot axis. For instance, chr2:1 would be the length of chromosome 1 plus 1, chr3:1 would be chromosome 1 plus chromosome 2 plus 1, so on and so forth. It is important to specify the genomic build (e.g. hg19) so that `manhattan` can make the correct transformation. It positions the chromosome labels on the x-axis according to these transformations.
 #' @export
 manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='grey'){
+    library(dplyr)
     data=gwas
     build=match.arg(build)
     data=add_cumulative_pos(data,build)
@@ -116,7 +120,7 @@ manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='gre
     color_map=unique(data$color)
     names(color_map)=unique(data$color)
     
-    ggplot(data,aes(x=cumulative_pos,y=y))+
+    ggplot2::ggplot(data,aes(x=cumulative_pos,y=y))+
         geom_point(aes(color=color))+
         theme_classic()+
         scale_x_continuous(limits=c(0,xmax),expand=c(0.01,0),breaks=x_breaks,
