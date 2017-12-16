@@ -12,6 +12,5 @@ BugReports: https://github.com/boxiangliu/manhattan/issues
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
-Imports: dplyr,
-    ggplot2
+Imports: ggplot2
 RoxygenNote: 6.0.1
