@@ -105,7 +105,6 @@ add_color=function(data,color1='black',color2='grey'){
 #' @return a ggplot object that makes a Manhattan plot
 #' @details
 #' \code{manhattan} is a wrapper around \code{ggplot}. It uses a few tricks to transform a genomic axis to a scatterplot axis. For instance, chr2:1 would be the length of chromosome 1 plus 1, chr3:1 would be chromosome 1 plus chromosome 2 plus 1, so on and so forth. It is important to specify the genomic build (e.g. hg19) so that `manhattan` can make the correct transformation. It positions the chromosome labels on the x-axis according to these transformations.
-#' @export
 manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='grey'){
     data=gwas
     build=match.arg(build)
