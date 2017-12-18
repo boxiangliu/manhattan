@@ -54,6 +54,8 @@ get_x_breaks=function(chrom_lengths){
     cumulative_length=get_cumulative_length(chrom_lengths)
     x_breaks=cumulative_length+round(chrom_lengths/2)
     names(x_breaks)=gsub('chr','',names(x_breaks))
+    names(x_breaks)[20]=''
+    names(x_breaks)[22]=''
     return(x_breaks)
 }
 
