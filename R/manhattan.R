@@ -120,8 +120,8 @@ manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='gre
     color_map=unique(data$color)
     names(color_map)=unique(data$color)
     
-    ggplot2::ggplot(data,aes(x=cumulative_pos,y=y))+
-        geom_point(aes(color=color))+
+    ggplot2::ggplot(data,aes(x=cumulative_pos,y=y,color=color))+
+        geom_point()+
         theme_classic()+
         scale_x_continuous(limits=c(0,xmax),expand=c(0.01,0),breaks=x_breaks,
                            labels=names(x_breaks),name='Chromosome')+
