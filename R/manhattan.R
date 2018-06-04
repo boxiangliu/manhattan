@@ -95,14 +95,14 @@ add_color=function(data,color1='black',color2='grey'){
     return(data)
 }
 
-add_shape = function(data,shape=1){
+add_shape = function(data,shape=16){
     if ('shape'%in% colnames(data)){
         user_shape = data$shape
     } else {
         user_shape = rep(NA, nrow(data))
     }
     
-    data$shape = 1
+    data$shape = shape
     data$shape = ifelse(is.na(user_shape),data$shape,user_shape)
     return(data)
 }
@@ -133,7 +133,7 @@ manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='gre
     build=match.arg(build)
     data=add_cumulative_pos(data,build)
     data=add_color(data,color1 = color1,color2 = color2)
-    data=add_shape(data,shape=1)
+    data=add_shape(data,shape=16)
     data=add_fill(data)
     chrom_lengths=get_chrom_lengths(build)
     xmax=get_total_length(chrom_lengths)
@@ -142,7 +142,7 @@ manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='gre
     color_map=unique(data$color)
     names(color_map)=unique(data$color)
     
-    ggplot2::ggplot(data,aes(x=cumulative_pos,y=y,color=color,shape=shape))+
+    ggplot2::ggplot(data,aes(x=cumulative_pos,y=y,color=color,shape=shape,fill=fill))+
         geom_point()+
         theme_classic()+
         scale_x_continuous(limits=c(0,xmax),expand=c(0.01,0),breaks=x_breaks,
