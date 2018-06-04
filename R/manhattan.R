@@ -107,6 +107,15 @@ add_shape = function(data,shape=1){
     return(data)
 }
 
+add_fill = function(data){
+    if ('fill'%in%colnames(data)){
+        NULL
+    } else {
+        data$fill = data$color
+    } 
+    return(data)
+}
+
 #' Make a Manhattan plot
 #' @param gwas A GWAS study. Must have chrom, pos, and y columns
 #' @param build Genomic build. Currently supports hg18, hg19, and hg38
@@ -125,14 +134,13 @@ manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='gre
     data=add_cumulative_pos(data,build)
     data=add_color(data,color1 = color1,color2 = color2)
     data=add_shape(data,shape=1)
+    data=add_fill(data)
     chrom_lengths=get_chrom_lengths(build)
     xmax=get_total_length(chrom_lengths)
     x_breaks=get_x_breaks(chrom_lengths)
     
     color_map=unique(data$color)
     names(color_map)=unique(data$color)
-    shape_map=unique(data$shape)
-    names(shape_map)=unique(data$shape)
     
     ggplot2::ggplot(data,aes(x=cumulative_pos,y=y,color=color,shape=shape))+
         geom_point()+
@@ -141,5 +149,6 @@ manhattan=function(gwas,build=c('hg18','hg19','hg38'),color1='black',color2='gre
                            labels=names(x_breaks),name='Chromosome')+
         scale_y_continuous(expand=c(0.01,0),name=expression('-log10(P-value)'))+
         scale_color_manual(values=color_map,guide='none')+
-        scale_shape_manual(values=shape_map,guide='none')
+        scale_fill_manual(values = color_map, guide = 'none')+
+        scale_shape_identity()
 }
