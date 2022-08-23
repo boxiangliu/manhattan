@@ -104,3 +104,10 @@ manhattan(cad_gwas,build='hg18')+geom_point(aes(color=color,size=size),show.lege
 
 ## Questions and Bugs
 If you have any question or want to report a bug, please open a github issue [here](https://github.com/boxiangliu/manhattan/issues). 
+
+## Citation
+If you use the `manhattan` package, please cite our paper: https://www.nature.com/articles/s41588-019-0404-0
+
+```
+Liu, Boxiang, Michael J. Gloudemans, Abhiram S. Rao, Erik Ingelsson, and Stephen B. Montgomery. "Abundant associations with gene expression complicate GWAS follow-up." Nature genetics 51, no. 5 (2019): 768-769.
+```
